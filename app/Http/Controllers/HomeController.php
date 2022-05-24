@@ -40,10 +40,10 @@ class HomeController extends Controller
     public function store_paket_epurchasing(Request $request)
     {
         $responses = Http::get('https://isb.lkpp.go.id/isb/api/fc667e09-d544-4d1c-ab5d-2801b2b29205/json/736987857/Ecat-PaketEPurchasing/tipe/4:12/parameter/' . $request->year . ':D129');
-        // $anggarans = PaketEPurchasing::where('tahun_anggaran', $request->year)->get();
-        // foreach ($anggarans as $anggaran) {
-        //     $anggaran->delete();
-        // }
+        $anggarans = PaketEPurchasing::where('tahun_anggaran', $request->year)->get();
+        foreach ($anggarans as $anggaran) {
+            $anggaran->delete();
+        }
         foreach (json_decode($responses) as $response) {
             PaketEPurchasing::create([
                 'tahun_anggaran' => $response->tahun_anggaran,
