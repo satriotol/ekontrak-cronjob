@@ -13,10 +13,13 @@ class HomeController extends Controller
         $responses = Http::get('https://isb.lkpp.go.id/isb/api/1683a6a8-32b4-40f9-a9be-dd07e8942ef3/json/736987856/PaketAnggaranPenyedia1618/tipe/4:12/parameter/2022:D129');
         return $responses->json();
     }
-    public function store()
+    public function store(Request $request)
     {
-        $responses = Http::get('https://isb.lkpp.go.id/isb/api/1683a6a8-32b4-40f9-a9be-dd07e8942ef3/json/736987856/PaketAnggaranPenyedia1618/tipe/4:12/parameter/2022:D129');
-        PaketAnggaranPenyedia::truncate();
+        $responses = Http::get('https://isb.lkpp.go.id/isb/api/1683a6a8-32b4-40f9-a9be-dd07e8942ef3/json/736987856/PaketAnggaranPenyedia1618/tipe/4:12/parameter/' . $request->year . ':D129');
+        $anggarans = PaketAnggaranPenyedia::where('tahun_anggaran_dana', $request->year)->get();
+        foreach ($anggarans as $anggaran) {
+            $anggaran->delete();
+        }
         foreach (json_decode($responses) as $response) {
             PaketAnggaranPenyedia::create([
                 'koderup' => $response->koderup,

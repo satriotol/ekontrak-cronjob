@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('paket_anggaran_penyedias', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('koderup');
+            $table->bigInteger('koderup')->nullable();
             $table->bigInteger('id_rup_client')->nullable();
             $table->bigInteger('kodekomponen')->nullable();
-            $table->bigInteger('kodekegiatan');
-            $table->bigInteger('pagu');
-            $table->longText('mak');
-            $table->string('sumberdana');
-            $table->bigInteger('kodeobjekakun');
-            $table->year('tahun_anggaran_dana');
+            $table->bigInteger('kodekegiatan')->nullable();
+            $table->bigInteger('pagu')->nullable();
+            $table->longText('mak')->nullable();
+            $table->string('sumberdana')->nullable();
+            $table->bigInteger('kodeobjekakun')->nullable();
+            $table->year('tahun_anggaran_dana')->nullable();
             $table->timestamps();
         });
     }
