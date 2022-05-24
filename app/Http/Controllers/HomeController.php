@@ -22,7 +22,7 @@ class HomeController extends Controller
         foreach ($anggarans as $anggaran) {
             $anggaran->delete();
         }
-        dd($responses);
+        dd(json_decode($responses));
         foreach (json_decode($responses) as $response) {
             PaketAnggaranPenyedia::create([
                 'koderup' => $response->koderup,
