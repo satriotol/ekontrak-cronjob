@@ -25,21 +25,18 @@ class HomeController extends Controller
         // }
         // return $responses;
         foreach (json_decode($responses) as $response) {
-            return [$responses, 'berhasil'];
-            // return 'berhasil';
-        }
-        foreach (json_decode($responses) as $response) {
-            PaketAnggaranPenyedia::create([
-                'koderup' => $response->koderup,
-                'id_rup_client' => $response->id_rup_client,
-                'kodekomponen' => $response->kodekomponen,
-                'kodekegiatan' => $response->kodekegiatan,
-                'pagu' => $response->pagu,
-                'mak' => $response->mak,
-                'sumberdana' => $response->sumberdana,
-                'kodeobjekakun' => $response->kodeobjekakun,
-                'tahun_anggaran_dana' => $response->tahun_anggaran_dana
-            ]);
+            dd($response);
+            // PaketAnggaranPenyedia::create([
+            //     'koderup' => $response->koderup,
+            //     'id_rup_client' => $response->id_rup_client,
+            //     'kodekomponen' => $response->kodekomponen,
+            //     'kodekegiatan' => $response->kodekegiatan,
+            //     'pagu' => $response->pagu,
+            //     'mak' => $response->mak,
+            //     'sumberdana' => $response->sumberdana,
+            //     'kodeobjekakun' => $response->kodeobjekakun,
+            //     'tahun_anggaran_dana' => $response->tahun_anggaran_dana
+            // ]);
         }
         return ResponseFormatter::success('', 'Sukses Menambah Data');
     }
