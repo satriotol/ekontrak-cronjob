@@ -12,7 +12,7 @@ class ObjekAkunMasterRup extends Model
     protected $fillable = [
         'id_program',
         'id_kegiatan',
-        'id',
+        'id_table',
         'kode_objekakund',
         'uraian_objekakun',
         'pagu',

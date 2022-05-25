@@ -94,7 +94,7 @@ class HomeController extends Controller
             ObjekAkunMasterRup::create([
                 'id_program' => $response->id_program,
                 'id_kegiatan' => $response->id_kegiatan,
-                'id' => $response->id,
+                'id_table' => $response->id,
                 'kode_objekakund' => $response->kode_objekakund,
                 'uraian_objekakun' => $response->uraian_objekakun,
                 'pagu' => $response->pagu,

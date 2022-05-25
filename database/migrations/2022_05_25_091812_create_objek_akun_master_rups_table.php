@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('objek_akun_master_rups', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('id_table');
             $table->unsignedBigInteger('id_program')->nullable();
             $table->unsignedBigInteger('id_kegiatan')->nullable();
-            $table->unsignedBigInteger('id')->nullable();
             $table->string('kode_objekakund')->nullable();
             $table->longText('uraian_objekakun')->nullable();
             $table->bigInteger('pagu')->nullable();
