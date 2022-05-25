@@ -23,8 +23,7 @@ class HomeController extends Controller
         // foreach ($anggarans as $anggaran) {
         //     $anggaran->delete();
         // }
-        $json = utf8_encode($responses);
-        return json_decode($json);
+        return json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $responses), true );
         foreach (json_decode($responses) as $response) {
             return $response;
             // PaketAnggaranPenyedia::create([
