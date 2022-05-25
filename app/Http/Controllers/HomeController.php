@@ -17,15 +17,12 @@ class HomeController extends Controller
     }
     public function store_paket_anggaran_penyedia(Request $request)
     {
-        // $responses = Http::get('https://isb.lkpp.go.id/isb/api/1683a6a8-32b4-40f9-a9be-dd07e8942ef3/json/736987856/PaketAnggaranPenyedia1618/tipe/4:12/parameter/' . $request->year . ':D129');
-        $responses = Http::get('https://inaproc.lkpp.go.id/isb/api/1683a6a8-32b4-40f9-a9be-dd07e8942ef3/json/736987856/PaketAnggaranPenyedia1618/tipe/4:12/parameter/2022:D129');
-        // return $responses;
+        $responses = Http::get('https://isb.lkpp.go.id/isb/api/1683a6a8-32b4-40f9-a9be-dd07e8942ef3/json/736987856/PaketAnggaranPenyedia1618/tipe/4:12/parameter/' . $request->year . ':D129');
         // $anggarans = PaketAnggaranPenyedia::where('tahun_anggaran_dana', $request->year)->get();
         // foreach ($anggarans as $anggaran) {
         //     $anggaran->delete();
         // }
-        return (json_decode($responses));
-        // return json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $responses), true );
+        return (json_decode($responses, true));
         foreach (json_decode($responses) as $response) {
             return $response;
             // PaketAnggaranPenyedia::create([
