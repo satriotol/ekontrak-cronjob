@@ -6,6 +6,7 @@ use App\Http\Controllers\ResponseFormatter;
 use App\Models\ObjekAkunMasterRup;
 use App\Models\PaketAnggaranPenyedia;
 use App\Models\PaketEPurchasing;
+use App\Models\ProgramMasterRup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Throwable;
@@ -100,6 +101,23 @@ class HomeController extends Controller
                 'pagu' => $response->pagu,
                 'is_deleted' => $response->is_deleted,
                 'id_client' => $response->id_client,
+            ]);
+        }
+        return ResponseFormatter::success('', 'Sukses Menambah Data');
+    }
+    public function store_ProgramMasterRup($year)
+    {
+        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/8058ef46-8d09-445a-be29-623e4007f164/json/736987931/ProgramMasterRUP/tipe/4:12/parameter/' . $year . ':D129');
+        ProgramMasterRup::truncate();
+        foreach (json_decode($responses) as $response) {
+            ProgramMasterRup::create([
+                'id_table' => $response->id,
+                'kode_programs' => $response->kode_programs,
+                'nama' => $response->nama,
+                'pagu' => $response->pagu,
+                'is_deleted' => $response->is_deleted,
+                'id_client' => $response->id_client,
+                'id_satker' => $response->id_satker,
             ]);
         }
         return ResponseFormatter::success('', 'Sukses Menambah Data');
