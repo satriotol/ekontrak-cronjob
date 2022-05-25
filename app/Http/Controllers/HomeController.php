@@ -25,7 +25,8 @@ class HomeController extends Controller
         // }
         // return $responses;
         foreach (json_decode($responses) as $response) {
-            return 'berhasil';
+            return [$responses, 'berhasil'];
+            // return 'berhasil';
         }
         foreach (json_decode($responses) as $response) {
             PaketAnggaranPenyedia::create([
