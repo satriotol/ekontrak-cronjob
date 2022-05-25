@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\ResponseFormatter;
+use App\Models\ObjekAkunMasterRup;
 use App\Models\PaketAnggaranPenyedia;
 use App\Models\PaketEPurchasing;
 use Illuminate\Http\Request;
@@ -81,6 +82,24 @@ class HomeController extends Controller
                 'status_paket' => $response->status_paket,
                 'paket_status_str' => $response->paket_status_str,
                 'catatan_produk' => $response->catatan_produk,
+            ]);
+        }
+        return ResponseFormatter::success('', 'Sukses Menambah Data');
+    }
+    public function store_ObjekAkunMasterRup(Request $request)
+    {
+        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/5482eb5b-2b4e-4033-81bd-9552e4cb8a28/json/736987962/ObjekAkunMasterRUP/tipe/4:12/parameter/' . $request->year . ':D129');
+        ObjekAkunMasterRup::truncate();
+        foreach (json_decode($responses) as $response) {
+            ObjekAkunMasterRup::create([
+                'id_program' => $response->id_program,
+                'id_kegiatan' => $response->id_kegiatan,
+                'id' => $response->id,
+                'kode_objekakund' => $response->kode_objekakund,
+                'uraian_objekakun' => $response->uraian_objekakun,
+                'pagu' => $response->pagu,
+                'is_deleted' => $response->is_deleted,
+                'id_client' => $response->id_client,
             ]);
         }
         return ResponseFormatter::success('', 'Sukses Menambah Data');

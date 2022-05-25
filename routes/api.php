@@ -22,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('tests', [HomeController::class, 'index']);
 Route::post('backup/store_paket_anggaran_penyedia', [HomeController::class, 'store_paket_anggaran_penyedia']);
 Route::post('backup/store_paket_epurchasing', [HomeController::class, 'store_paket_epurchasing']);
+Route::post('backup/store_ObjekAkunMasterRup', [HomeController::class, 'store_ObjekAkunMasterRup']);
