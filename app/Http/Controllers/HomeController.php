@@ -25,7 +25,7 @@ class HomeController extends Controller
         // }
         // return $responses;
         foreach (json_decode($responses) as $response) {
-            dd($response);
+            return $response;
             // PaketAnggaranPenyedia::create([
             //     'koderup' => $response->koderup,
             //     'id_rup_client' => $response->id_rup_client,
