@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\ResponseFormatter;
+use App\Models\KegiatanMasterRup;
 use App\Models\ObjekAkunMasterRup;
 use App\Models\PaketAnggaranPenyedia;
 use App\Models\PaketEPurchasing;
@@ -113,6 +114,24 @@ class HomeController extends Controller
             ProgramMasterRup::create([
                 'id_table' => $response->id,
                 'kode_programs' => $response->kode_programs,
+                'nama' => $response->nama,
+                'pagu' => $response->pagu,
+                'is_deleted' => $response->is_deleted,
+                'id_client' => $response->id_client,
+                'id_satker' => $response->id_satker,
+            ]);
+        }
+        return ResponseFormatter::success('', 'Sukses Menambah Data');
+    }
+    public function store_KegiatanMasterRup($year)
+    {
+        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/273471db-b25d-4850-94af-aa94f3de22ec/json/736987930/KegiatanMasterRUP/tipe/4:12/parameter/' . $year . ':D129');
+        KegiatanMasterRup::truncate();
+        foreach (json_decode($responses) as $response) {
+            KegiatanMasterRup::create([
+                'id_program' => $response->id_program,
+                'id_table' => $response->id,
+                'kode_kegiatans' => $response->kode_kegiatans,
                 'nama' => $response->nama,
                 'pagu' => $response->pagu,
                 'is_deleted' => $response->is_deleted,

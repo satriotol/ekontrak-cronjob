@@ -24,3 +24,4 @@ Route::post('backup/store_paket_anggaran_penyedia/{year}', [HomeController::clas
 Route::post('backup/store_paket_epurchasing/{year}', [HomeController::class, 'store_paket_epurchasing']);
 Route::post('backup/store_ObjekAkunMasterRup/{year}', [HomeController::class, 'store_ObjekAkunMasterRup']);
 Route::post('backup/store_ProgramMasterRup/{year}', [HomeController::class, 'store_ProgramMasterRup']);
+Route::post('backup/store_KegiatanMasterRup/{year}', [HomeController::class, 'store_KegiatanMasterRup']);
