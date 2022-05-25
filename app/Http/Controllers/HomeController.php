@@ -19,10 +19,10 @@ class HomeController extends Controller
     {
         $responses = Http::get('https://isb.lkpp.go.id/isb/api/1683a6a8-32b4-40f9-a9be-dd07e8942ef3/json/736987856/PaketAnggaranPenyedia1618/tipe/4:12/parameter/' . $request->year . ':D129');
         // return $responses;
-        $anggarans = PaketAnggaranPenyedia::where('tahun_anggaran_dana', $request->year)->get();
-        foreach ($anggarans as $anggaran) {
-            $anggaran->delete();
-        }
+        // $anggarans = PaketAnggaranPenyedia::where('tahun_anggaran_dana', $request->year)->get();
+        // foreach ($anggarans as $anggaran) {
+        //     $anggaran->delete();
+        // }
         return $responses;
         foreach ($responses as $response) {
             PaketAnggaranPenyedia::create([
