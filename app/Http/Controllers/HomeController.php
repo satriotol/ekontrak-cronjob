@@ -8,6 +8,7 @@ use App\Models\ObjekAkunMasterRup;
 use App\Models\PaketAnggaranPenyedia;
 use App\Models\PaketEPurchasing;
 use App\Models\ProgramMasterRup;
+use App\Models\SuboutputMasterRup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Throwable;
@@ -137,6 +138,25 @@ class HomeController extends Controller
                 'is_deleted' => $response->is_deleted,
                 'id_client' => $response->id_client,
                 'id_satker' => $response->id_satker,
+            ]);
+        }
+        return ResponseFormatter::success('', 'Sukses Menambah Data');
+    }
+    public function store_SuboutputMasterRup($year, $kldi)
+    {
+        $responses = Http::accept('application/json')->get('https://isb.lkpp.go.id/isb/api/bb3cda10-031a-4750-b64b-df12dfb1c662/json/736987925/SuboutputMasterRUP/tipe/4:12/parameter/'.$year.':'.$kldi);
+        SuboutputMasterRup::truncate();
+        foreach (json_decode($responses) as $response) {
+            SuboutputMasterRup::create([
+                'id_program' => $response->id_program,
+                'id_kegiatan' => $response->id_kegiatan,
+                'id_output' => $response->id_output,
+                'id_table' => $response->id,
+                'kode_suboutput_string' => $response->kode_suboutput_string,
+                'nama' => $response->nama,
+                'pagu' => $response->pagu,
+                'is_deleted' => $response->is_deleted,
+                'id_client' => $response->id_client,
             ]);
         }
         return ResponseFormatter::success('', 'Sukses Menambah Data');
