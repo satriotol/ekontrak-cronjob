@@ -23,7 +23,7 @@ class HomeController extends Controller
         //     $anggaran->delete();
         // }
         // return $responses;
-        return (json_decode($responses));
+        return $responses->json();
         foreach (json_decode($responses) as $response) {
             return $response;
             // PaketAnggaranPenyedia::create([
