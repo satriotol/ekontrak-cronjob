@@ -173,7 +173,7 @@ class HomeController extends Controller
                 'id_output' => $response->id_output,
                 'id_suboutput' => $response->id_suboutput,
                 'id_table' => $response->id,
-                'kode_suboutput_string' => $response->kode_suboutput_string,
+                'kode_komponen_string' => $response->kode_komponen_string,
                 'nama' => $response->nama,
                 'pagu' => $response->pagu,
                 'is_deleted' => $response->is_deleted,
