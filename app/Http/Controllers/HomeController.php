@@ -19,36 +19,29 @@ class HomeController extends Controller
     public function store_paket_anggaran_penyedia(Request $request)
     {
         $responses = Http::accept('application/json')->get('https://isb.lkpp.go.id/isb/api/1683a6a8-32b4-40f9-a9be-dd07e8942ef3/json/736987856/PaketAnggaranPenyedia1618/tipe/4:12/parameter/' . $request->year . ':D129')->json();
-        // $anggarans = PaketAnggaranPenyedia::where('tahun_anggaran_dana', $request->year)->get();
-        // foreach ($anggarans as $anggaran) {
-        //     $anggaran->delete();
-        // }
-        try {
-            return $responses;
-        } catch (Throwable $e) {
-            report($e);
-            return 'error';
+        $anggarans = PaketAnggaranPenyedia::where('tahun_anggaran_dana', $request->year)->get();
+        foreach ($anggarans as $anggaran) {
+            $anggaran->delete();
         }
-        foreach (json_decode($responses) as $response) {
-            return $response;
-            // PaketAnggaranPenyedia::create([
-            //     'koderup' => $response->koderup,
-            //     'id_rup_client' => $response->id_rup_client,
-            //     'kodekomponen' => $response->kodekomponen,
-            //     'kodekegiatan' => $response->kodekegiatan,
-            //     'pagu' => $response->pagu,
-            //     'mak' => $response->mak,
-            //     'sumberdana' => $response->sumberdana,
-            //     'kodeobjekakun' => $response->kodeobjekakun,
-            //     'tahun_anggaran_dana' => $response->tahun_anggaran_dana
-            // ]);
+        foreach ($responses as $response) {
+            PaketAnggaranPenyedia::create([
+                'koderup' => $response->koderup,
+                'id_rup_client' => $response->id_rup_client,
+                'kodekomponen' => $response->kodekomponen,
+                'kodekegiatan' => $response->kodekegiatan,
+                'pagu' => $response->pagu,
+                'mak' => $response->mak,
+                'sumberdana' => $response->sumberdana,
+                'kodeobjekakun' => $response->kodeobjekakun,
+                'tahun_anggaran_dana' => $response->tahun_anggaran_dana
+            ]);
         }
         return ResponseFormatter::success('', 'Sukses Menambah Data');
     }
     public function store_paket_epurchasing(Request $request)
     {
-        $responses = Http::get('https://isb.lkpp.go.id/isb/api/fc667e09-d544-4d1c-ab5d-2801b2b29205/json/736987857/Ecat-PaketEPurchasing/tipe/4:12/parameter/' . $request['year'] . ':D129');
-        $anggarans = PaketEPurchasing::where('tahun_anggaran', $request['year'])->get();
+        $responses = Http::get('https://isb.lkpp.go.id/isb/api/fc667e09-d544-4d1c-ab5d-2801b2b29205/json/736987857/Ecat-PaketEPurchasing/tipe/4:12/parameter/' . $request->year . ':D129');
+        $anggarans = PaketEPurchasing::where('tahun_anggaran', $request->year)->get();
         foreach ($anggarans as $anggaran) {
             $anggaran->delete();
         }
