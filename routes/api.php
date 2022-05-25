@@ -20,8 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('tests', [HomeController::class, 'index']);
-Route::post('backup/store_paket_anggaran_penyedia/{year}', [HomeController::class, 'store_paket_anggaran_penyedia']);
-Route::post('backup/store_paket_epurchasing/{year}', [HomeController::class, 'store_paket_epurchasing']);
-Route::post('backup/store_ObjekAkunMasterRup/{year}', [HomeController::class, 'store_ObjekAkunMasterRup']);
-Route::post('backup/store_ProgramMasterRup/{year}', [HomeController::class, 'store_ProgramMasterRup']);
-Route::post('backup/store_KegiatanMasterRup/{year}', [HomeController::class, 'store_KegiatanMasterRup']);
+Route::get('backup/store_paket_anggaran_penyedia/{year}', [HomeController::class, 'store_paket_anggaran_penyedia']);
+Route::get('backup/store_paket_epurchasing/{year}', [HomeController::class, 'store_paket_epurchasing']);
+Route::get('backup/store_ObjekAkunMasterRup/{year}', [HomeController::class, 'store_ObjekAkunMasterRup']);
+Route::get('backup/store_ProgramMasterRup/{year}', [HomeController::class, 'store_ProgramMasterRup']);
+Route::get('backup/store_KegiatanMasterRup/{year}', [HomeController::class, 'store_KegiatanMasterRup']);
