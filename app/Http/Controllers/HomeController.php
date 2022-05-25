@@ -7,6 +7,7 @@ use App\Models\PaketAnggaranPenyedia;
 use App\Models\PaketEPurchasing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Throwable;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,13 @@ class HomeController extends Controller
         //     $anggaran->delete();
         // }
         // return $responses;
-        return $responses->json();
+        try {
+            return $responses->json();
+        } catch (Throwable $e) {
+            report($e);
+
+            return false;
+        }
         foreach (json_decode($responses) as $response) {
             return $response;
             // PaketAnggaranPenyedia::create([
