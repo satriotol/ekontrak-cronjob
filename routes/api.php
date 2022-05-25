@@ -25,4 +25,5 @@ Route::get('backup/store_paket_epurchasing/{year}', [HomeController::class, 'sto
 Route::get('backup/store_ObjekAkunMasterRup/{year}', [HomeController::class, 'store_ObjekAkunMasterRup']);
 Route::get('backup/store_ProgramMasterRup/{year}', [HomeController::class, 'store_ProgramMasterRup']);
 Route::get('backup/store_KegiatanMasterRup/{year}', [HomeController::class, 'store_KegiatanMasterRup']);
-Route::get('backup/store_SuboutputMasterRup/{year}/{kldi}', [HomeController::class, 'store_SuboutputMasterRup']);
+Route::get('backup/store_SuboutputMasterRup/year:{year}/kldi:{kldi}', [HomeController::class, 'store_SuboutputMasterRup']);
+Route::get('backup/store_KomponenMasterRup/year:{year}/kldi:{kldi}', [HomeController::class, 'store_KomponenMasterRup']);

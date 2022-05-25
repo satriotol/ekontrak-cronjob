@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\ResponseFormatter;
 use App\Models\KegiatanMasterRup;
+use App\Models\KomponenMasterRup;
 use App\Models\ObjekAkunMasterRup;
 use App\Models\PaketAnggaranPenyedia;
 use App\Models\PaketEPurchasing;
@@ -144,13 +145,33 @@ class HomeController extends Controller
     }
     public function store_SuboutputMasterRup($year, $kldi)
     {
-        $responses = Http::accept('application/json')->get('https://isb.lkpp.go.id/isb/api/bb3cda10-031a-4750-b64b-df12dfb1c662/json/736987925/SuboutputMasterRUP/tipe/4:12/parameter/'.$year.':'.$kldi);
+        $responses = Http::accept('application/json')->get('https://isb.lkpp.go.id/isb/api/bb3cda10-031a-4750-b64b-df12dfb1c662/json/736987925/SuboutputMasterRUP/tipe/4:12/parameter/' . $year . ':' . $kldi);
         SuboutputMasterRup::truncate();
         foreach (json_decode($responses) as $response) {
             SuboutputMasterRup::create([
                 'id_program' => $response->id_program,
                 'id_kegiatan' => $response->id_kegiatan,
                 'id_output' => $response->id_output,
+                'id_table' => $response->id,
+                'kode_suboutput_string' => $response->kode_suboutput_string,
+                'nama' => $response->nama,
+                'pagu' => $response->pagu,
+                'is_deleted' => $response->is_deleted,
+                'id_client' => $response->id_client,
+            ]);
+        }
+        return ResponseFormatter::success('', 'Sukses Menambah Data');
+    }
+    public function store_KomponenMasterRup($year, $kldi)
+    {
+        $responses = Http::accept('application/json')->get('https://isb.lkpp.go.id/isb/api/9b154c9f-d064-48ef-b2b9-e857a27efb1e/json/736987922/KomponenMasterRUP/tipe/4:12/parameter/' . $year . ':' . $kldi);
+        KomponenMasterRup::truncate();
+        foreach (json_decode($responses) as $response) {
+            KomponenMasterRup::create([
+                'id_program' => $response->id_program,
+                'id_kegiatan' => $response->id_kegiatan,
+                'id_output' => $response->id_output,
+                'id_suboutput' => $response->id_suboutput,
                 'id_table' => $response->id,
                 'kode_suboutput_string' => $response->kode_suboutput_string,
                 'nama' => $response->nama,
