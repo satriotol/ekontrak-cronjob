@@ -21,8 +21,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_suboutput')->nullable();
             $table->unsignedBigInteger('id_komponen')->nullable();
             $table->unsignedBigInteger('id_table')->nullable();
-            $table->string('kode_subkomponen_string')->nullable();
-            $table->string('nama')->nullable();
+            $table->longText('kode_subkomponen_string')->nullable();
+            $table->longText('nama')->nullable();
             $table->bigInteger('pagu')->nullable();
             $table->boolean('is_deleted')->nullable();
             $table->unsignedBigInteger('id_client')->nullable();
