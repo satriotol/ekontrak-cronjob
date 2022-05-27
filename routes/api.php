@@ -27,3 +27,4 @@ Route::get('backup/store_ProgramMasterRup/{year}', [HomeController::class, 'stor
 Route::get('backup/store_KegiatanMasterRup/{year}', [HomeController::class, 'store_KegiatanMasterRup']);
 Route::get('backup/store_SuboutputMasterRup/{year}/{kldi}', [HomeController::class, 'store_SuboutputMasterRup']);
 Route::get('backup/store_KomponenMasterRup/{year}/{kldi}', [HomeController::class, 'store_KomponenMasterRup']);
+Route::get('backup/store_MasterSatkerRup/{year}', [HomeController::class, 'store_MasterSatkerRup']);

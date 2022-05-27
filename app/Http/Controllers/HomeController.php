@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\ResponseFormatter;
 use App\Models\KegiatanMasterRup;
 use App\Models\KomponenMasterRup;
+use App\Models\MasterSatkerRup;
 use App\Models\ObjekAkunMasterRup;
 use App\Models\PaketAnggaranPenyedia;
 use App\Models\PaketEPurchasing;
@@ -190,5 +191,29 @@ class HomeController extends Controller
             KomponenMasterRup::updateOrCreate(['id_table' => $record['id_table']], $record);
         }
         return ResponseFormatter::success(KomponenMasterRup::all()->count(), 'Sukses Menambah Data');
+    }
+    public function store_MasterSatkerRup($year)
+    {
+        $responses = Http::accept('application/json')->get('https://isb.lkpp.go.id/isb/api/9c29997c-53db-4c81-a49d-59318b1cbff4/json/736987917/MasterSatkerRUP/tipe/12:12/parameter/D129:'.$year);
+        $records = array();
+        foreach (json_decode($responses) as $response) {
+            $records[] = [
+                'kd_satker' => $response->kd_satker,
+                "kd_satker_str" => $response->kd_satker_str,
+                "nama_satker" => $response->nama_satker,
+                "alamat" => $response->alamat,
+                "telepon" => $response->telepon,
+                "fax" => $response->fax,
+                "kodepos" => $response->kodepos,
+                "status_satker" => $response->status_satker,
+                "ket_satker" => $response->ket_satker,
+                "jenis_satker" => $response->jenis_satker,
+                "kd_klpd" => $response->kd_klpd
+            ];
+        }
+        foreach ($records as $record) {
+            MasterSatkerRup::updateOrCreate(['kd_satker' => $record['kd_satker']], $record);
+        }
+        return ResponseFormatter::success(MasterSatkerRup::all()->count(), 'Sukses Menambah Data');
     }
 }
