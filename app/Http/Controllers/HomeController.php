@@ -10,6 +10,7 @@ use App\Models\ObjekAkunMasterRup;
 use App\Models\PaketAnggaranPenyedia;
 use App\Models\PaketEPurchasing;
 use App\Models\ProgramMasterRup;
+use App\Models\SubKomponenMasterRup;
 use App\Models\SuboutputMasterRup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -194,7 +195,7 @@ class HomeController extends Controller
     }
     public function store_MasterSatkerRup($year)
     {
-        $responses = Http::accept('application/json')->get('https://isb.lkpp.go.id/isb/api/9c29997c-53db-4c81-a49d-59318b1cbff4/json/736987917/MasterSatkerRUP/tipe/12:12/parameter/D129:'.$year);
+        $responses = Http::accept('application/json')->get('https://isb.lkpp.go.id/isb/api/9c29997c-53db-4c81-a49d-59318b1cbff4/json/736987917/MasterSatkerRUP/tipe/12:12/parameter/D129:' . $year);
         $records = array();
         foreach (json_decode($responses) as $response) {
             $records[] = [
@@ -215,5 +216,29 @@ class HomeController extends Controller
             MasterSatkerRup::updateOrCreate(['kd_satker' => $record['kd_satker']], $record);
         }
         return ResponseFormatter::success(MasterSatkerRup::all()->count(), 'Sukses Menambah Data');
+    }
+    public function store_SubKomponenMasterRup($year, $kldi)
+    {
+        $responses = Http::accept('application/json')->get('https://isb.lkpp.go.id/isb/api/2fe05a96-36b1-40e9-945e-310f86f58b07/json/736987915/SubKomponenMasterRUP/tipe/4:12/parameter/' . $year . ':' . $kldi);
+        $records = array();
+        foreach (json_decode($responses) as $response) {
+            $records[] = [
+                "id_program" => $response->id_program,
+                "id_kegiatan" => $response->id_kegiatan,
+                "id_output" => $response->id_output,
+                "id_suboutput" => $response->id_suboutput,
+                "id_komponen" => $response->id_komponen,
+                "id_table" => $response->id,
+                "kode_subkomponen_string" => $response->kode_subkomponen_string,
+                "nama" => $response->nama,
+                "pagu" => $response->pagu,
+                "is_deleted" => $response->is_deleted,
+                "id_client" => $response->id_client
+            ];
+        }
+        foreach ($records as $record) {
+            SubKomponenMasterRup::updateOrCreate(['id_table' => $record['id_table']], $record);
+        }
+        return ResponseFormatter::success(SubKomponenMasterRup::all()->count(), 'Sukses Menambah Data');
     }
 }
