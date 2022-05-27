@@ -128,9 +128,9 @@ class HomeController extends Controller
     public function store_KegiatanMasterRup($year)
     {
         $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/273471db-b25d-4850-94af-aa94f3de22ec/json/736987930/KegiatanMasterRUP/tipe/4:12/parameter/' . $year . ':D129');
-        KegiatanMasterRup::truncate();
+        $records = array();
         foreach (json_decode($responses) as $response) {
-            KegiatanMasterRup::create([
+            $records[] = [
                 'id_program' => $response->id_program,
                 'id_table' => $response->id,
                 'kode_kegiatans' => $response->kode_kegiatans,
@@ -139,16 +139,19 @@ class HomeController extends Controller
                 'is_deleted' => $response->is_deleted,
                 'id_client' => $response->id_client,
                 'id_satker' => $response->id_satker,
-            ]);
+            ];
         }
-        return ResponseFormatter::success('', 'Sukses Menambah Data');
+        foreach ($records as $record) {
+            KegiatanMasterRup::updateOrCreate(['id_table' => $record['id_table']], $record);
+        }
+        return ResponseFormatter::success(KegiatanMasterRup::all()->count(), 'Sukses Menambah Data');
     }
     public function store_SuboutputMasterRup($year, $kldi)
     {
         $responses = Http::accept('application/json')->get('https://isb.lkpp.go.id/isb/api/bb3cda10-031a-4750-b64b-df12dfb1c662/json/736987925/SuboutputMasterRUP/tipe/4:12/parameter/' . $year . ':' . $kldi);
-        SuboutputMasterRup::truncate();
+        $records = array();
         foreach (json_decode($responses) as $response) {
-            SuboutputMasterRup::create([
+            $records[] = [
                 'id_program' => $response->id_program,
                 'id_kegiatan' => $response->id_kegiatan,
                 'id_output' => $response->id_output,
@@ -158,16 +161,19 @@ class HomeController extends Controller
                 'pagu' => $response->pagu,
                 'is_deleted' => $response->is_deleted,
                 'id_client' => $response->id_client,
-            ]);
+            ];
         }
-        return ResponseFormatter::success('', 'Sukses Menambah Data');
+        foreach ($records as $record) {
+            SuboutputMasterRup::updateOrCreate(['id_table' => $record['id_table']], $record);
+        }
+        return ResponseFormatter::success(SuboutputMasterRup::all()->count(), 'Sukses Menambah Data');
     }
     public function store_KomponenMasterRup($year, $kldi)
     {
         $responses = Http::accept('application/json')->get('https://isb.lkpp.go.id/isb/api/9b154c9f-d064-48ef-b2b9-e857a27efb1e/json/736987922/KomponenMasterRUP/tipe/4:12/parameter/' . $year . ':' . $kldi);
-        KomponenMasterRup::truncate();
+        $records = array();
         foreach (json_decode($responses) as $response) {
-            KomponenMasterRup::create([
+            $records[] = [
                 'id_program' => $response->id_program,
                 'id_kegiatan' => $response->id_kegiatan,
                 'id_output' => $response->id_output,
@@ -178,8 +184,11 @@ class HomeController extends Controller
                 'pagu' => $response->pagu,
                 'is_deleted' => $response->is_deleted,
                 'id_client' => $response->id_client,
-            ]);
+            ];
         }
-        return ResponseFormatter::success('', 'Sukses Menambah Data');
+        foreach ($records as $record) {
+            KomponenMasterRup::updateOrCreate(['id_table' => $record['id_table']], $record);
+        }
+        return ResponseFormatter::success(KomponenMasterRup::all()->count(), 'Sukses Menambah Data');
     }
 }
