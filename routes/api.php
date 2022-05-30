@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaketSwakelolaOpt1618Controller;
 use App\Http\Controllers\RupStrukturAnggaranKl1221Controller;
 use App\Http\Controllers\RupStrukturAnggaranPemda1221Controller;
+use App\Http\Controllers\TenderEkontrakBapBastSpseController;
 use App\Http\Controllers\TenderEkontrakSppbJspseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,3 +38,4 @@ Route::get('backup/store_TenderEkontrakSppbJspse/{year}/{lpse}', [TenderEkontrak
 Route::get('backup/store_RupStrukturAnggaranPemda1221/{year}', [RupStrukturAnggaranPemda1221Controller::class, 'index']);
 Route::get('backup/store_PaketSwakelolaOpt1618/{year}/{kldi}', [PaketSwakelolaOpt1618Controller::class, 'index']);
 Route::get('backup/store_RupStrukturAnggaranKl1221/{year}/{klpd}', [RupStrukturAnggaranKl1221Controller::class, 'index']);
+Route::get('backup/store_TenderEkontrakBapBastSpse/{year}/{lpse}', [TenderEkontrakBapBastSpseController::class, 'index']);
