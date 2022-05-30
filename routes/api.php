@@ -30,4 +30,4 @@ Route::get('backup/store_SuboutputMasterRup/{year}/{kldi}', [HomeController::cla
 Route::get('backup/store_KomponenMasterRup/{year}/{kldi}', [HomeController::class, 'store_KomponenMasterRup']);
 Route::get('backup/store_MasterSatkerRup/{year}', [HomeController::class, 'store_MasterSatkerRup']);
 Route::get('backup/store_SubKomponenMasterRup/{year}/{kldi}', [HomeController::class, 'store_SubKomponenMasterRup']);
-Route::get('backup/store_TenderEkontrakSppbJspse/', [TenderEkontrakSppbJspseController::class, 'index']);
+Route::get('backup/store_TenderEkontrakSppbJspse/year/{lpse}', [TenderEkontrakSppbJspseController::class, 'index']);

@@ -13,14 +13,8 @@ class TenderEkontrakSppbJspseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index($year, $lpse)
     {
-        $year = $request->get('year');
-        $lpse = $request->get('lpse');
-        dd($year, $lpse);
-        if ($request->get('year') == null || $request->get('lpse') == null) {
-            return ResponseFormatter::error(null, 'Pastikan Isikan Data');
-        }
         $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/fd7acb5f-8f86-45e2-a95c-e62d741fd1e3/json/736987911/TenderEkontrakSPPBJspse/tipe/4:4/parameter/' . $year . ':' . $lpse);
         $records = array();
         foreach (json_decode($responses) as $response) {
