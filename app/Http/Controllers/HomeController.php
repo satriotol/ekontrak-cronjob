@@ -43,7 +43,7 @@ class HomeController extends Controller
                 'tahun_anggaran_dana' => $response->tahun_anggaran_dana
             ]);
         }
-        return ResponseFormatter::success('', 'Sukses Menambah Data');
+        return ResponseFormatter::success(PaketAnggaranPenyedia::all()->count(), 'Sukses Menambah Data');
     }
     public function store_paket_epurchasing($year)
     {
