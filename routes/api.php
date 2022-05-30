@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaketSwakelolaOpt1618Controller;
 use App\Http\Controllers\RupStrukturAnggaranPemda1221Controller;
 use App\Http\Controllers\TenderEkontrakSppbJspseController;
 use Illuminate\Http\Request;
@@ -33,3 +34,4 @@ Route::get('backup/store_MasterSatkerRup/{year}', [HomeController::class, 'store
 Route::get('backup/store_SubKomponenMasterRup/{year}/{kldi}', [HomeController::class, 'store_SubKomponenMasterRup']);
 Route::get('backup/store_TenderEkontrakSppbJspse/{year}/{lpse}', [TenderEkontrakSppbJspseController::class, 'index']);
 Route::get('backup/store_RupStrukturAnggaranPemda1221/{year}', [RupStrukturAnggaranPemda1221Controller::class, 'index']);
+Route::get('backup/store_PaketSwakelolaOpt1618/{year}/{kldi}', [PaketSwakelolaOpt1618Controller::class, 'index']);
