@@ -3,6 +3,7 @@
 use App\Http\Controllers\EcatPenyediaDetailController;
 use App\Http\Controllers\EcatPenyediaDistributorDetailController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MasterLpseSpseController;
 use App\Http\Controllers\PaketSwakelolaOpt1618Controller;
 use App\Http\Controllers\RupStrukturAnggaranKl1221Controller;
 use App\Http\Controllers\RupStrukturAnggaranPemda1221Controller;
@@ -43,3 +44,4 @@ Route::get('backup/store_RupStrukturAnggaranKl1221/{year}/{klpd}', [RupStrukturA
 Route::get('backup/store_TenderEkontrakBapBastSpse/{year}/{lpse}', [TenderEkontrakBapBastSpseController::class, 'index']);
 Route::get('backup/store_EcatPenyediaDetail/{kode_penyedia}', [EcatPenyediaDetailController::class, 'index']);
 Route::get('backup/store_EcatPenyediaDistributorDetail/{kode_penyedia}', [EcatPenyediaDistributorDetailController::class, 'index']);
+Route::get('backup/store_MasterLpseSpse', [MasterLpseSpseController::class, 'index']);
