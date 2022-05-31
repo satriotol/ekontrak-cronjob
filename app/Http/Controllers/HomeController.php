@@ -90,7 +90,7 @@ class HomeController extends Controller
                 'catatan_produk' => $response->catatan_produk,
             ]);
         }
-        return ResponseFormatter::success('', 'Sukses Menambah Data');
+        return ResponseFormatter::success(PaketEPurchasing::all()->count(), 'Sukses Menambah Data');
     }
     public function store_ObjekAkunMasterRup($year)
     {

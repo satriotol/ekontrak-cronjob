@@ -8,6 +8,7 @@ use App\Http\Controllers\MasterLpseSpseController;
 use App\Http\Controllers\NonTenderEkontrakSppbJspseController;
 use App\Http\Controllers\NonTenderPengumumanDetailSpseController;
 use App\Http\Controllers\PaketSwakelolaOpt1618Controller;
+use App\Http\Controllers\PpPerNonTenderSpseController;
 use App\Http\Controllers\RupStrukturAnggaranKl1221Controller;
 use App\Http\Controllers\RupStrukturAnggaranPemda1221Controller;
 use App\Http\Controllers\TenderEkontrakBapBastSpseController;
@@ -51,3 +52,4 @@ Route::get('backup/store_MasterLpseSpse', [MasterLpseSpseController::class, 'ind
 Route::get('backup/store_NonTenderPengumumanDetailSpse/{year}/{lpse}', [NonTenderPengumumanDetailSpseController::class, 'index']);
 Route::get('backup/store_NonTenderEkontrakSppbJspse/{year}/{lpse}', [NonTenderEkontrakSppbJspseController::class, 'index']);
 Route::get('backup/store_JadwalPerNonTenderSpse/{kode_non_tender}', [JadwalPerNonTenderSpseController::class, 'index']);
+Route::get('backup/store_PpPerNonTenderSpse/{year}/{lpse}', [PpPerNonTenderSpseController::class, 'index']);
