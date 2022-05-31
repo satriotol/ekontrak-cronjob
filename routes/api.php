@@ -5,6 +5,7 @@ use App\Http\Controllers\EcatPenyediaDetailController;
 use App\Http\Controllers\EcatPenyediaDistributorDetailController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JadwalPerNonTenderSpseController;
+use App\Http\Controllers\JadwalPerTenderSpseController;
 use App\Http\Controllers\MasterLpseSpseController;
 use App\Http\Controllers\NonTenderEkontrakSppbJspseController;
 use App\Http\Controllers\NonTenderPengumumanDetailSpseController;
@@ -57,3 +58,4 @@ Route::get('backup/store_JadwalPerNonTenderSpse/{kode_non_tender}', [JadwalPerNo
 Route::get('backup/store_PpPerNonTenderSpse/{year}/{lpse}', [PpPerNonTenderSpseController::class, 'index']);
 Route::get('backup/store_EcatInstansiSatker/', [EcatInstansiSatkerController::class, 'index']);
 Route::get('backup/store_PencatatanNonTenderSpse/{year}/{lpse}', [PencatatanNonTenderSpseController::class, 'index']);
+Route::get('backup/store_JadwalPerTenderSpse/{kode_tender}', [JadwalPerTenderSpseController::class, 'index']);
