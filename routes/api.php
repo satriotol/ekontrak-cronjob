@@ -18,6 +18,7 @@ use App\Http\Controllers\PencatatanSwakelolaRealisasiSpseController;
 use App\Http\Controllers\PencatatanSwakelolaSpseController;
 use App\Http\Controllers\PokjaPerTenderSpseController;
 use App\Http\Controllers\PpPerNonTenderSpseController;
+use App\Http\Controllers\RinciObjekAkunMasterRupController;
 use App\Http\Controllers\RupStrukturAnggaranKl1221Controller;
 use App\Http\Controllers\RupStrukturAnggaranPemda1221Controller;
 use App\Http\Controllers\TenderEkontrakBapBastSpseController;
@@ -71,3 +72,4 @@ Route::get('backup/store_PencatatanSwakelolaSpse/{year}/{lpse}', [PencatatanSwak
 Route::get('backup/store_HistoryKajiUlangRupPenyedia/{rup}', [HistoryKajiUlangRupPenyediaController::class, 'index']);
 Route::get('backup/store_EcatProdukDetail/{kode_produk}', [EcatProdukDetailController::class, 'index']);
 Route::get('backup/store_NonTenderSelesaiDetailSpse/{year}/{lpse}', [NonTenderSelesaiDetailSpseController::class, 'index']);
+Route::get('backup/store_RinciObjekAkunMasterRup/{year}', [RinciObjekAkunMasterRupController::class, 'index']);
