@@ -3,6 +3,7 @@
 use App\Http\Controllers\EcatInstansiSatkerController;
 use App\Http\Controllers\EcatPenyediaDetailController;
 use App\Http\Controllers\EcatPenyediaDistributorDetailController;
+use App\Http\Controllers\EcatProdukDetailController;
 use App\Http\Controllers\HistoryKajiUlangRupPenyediaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JadwalPerNonTenderSpseController;
@@ -67,3 +68,4 @@ Route::get('backup/store_PencatatanSwakelolaRealisasiSpse/{KodeSwakelolaPct}', [
 Route::get('backup/store_PokjaPerTenderSpse/{year}/{lpse}', [PokjaPerTenderSpseController::class, 'index']);
 Route::get('backup/store_PencatatanSwakelolaSpse/{year}/{lpse}', [PencatatanSwakelolaSpseController::class, 'index']);
 Route::get('backup/store_HistoryKajiUlangRupPenyedia/{rup}', [HistoryKajiUlangRupPenyediaController::class, 'index']);
+Route::get('backup/store_EcatProdukDetail/{kode_produk}', [EcatProdukDetailController::class, 'index']);
