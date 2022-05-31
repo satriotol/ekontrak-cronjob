@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EcatInstansiSatkerController;
 use App\Http\Controllers\EcatPenyediaDetailController;
 use App\Http\Controllers\EcatPenyediaDistributorDetailController;
 use App\Http\Controllers\HomeController;
@@ -53,3 +54,4 @@ Route::get('backup/store_NonTenderPengumumanDetailSpse/{year}/{lpse}', [NonTende
 Route::get('backup/store_NonTenderEkontrakSppbJspse/{year}/{lpse}', [NonTenderEkontrakSppbJspseController::class, 'index']);
 Route::get('backup/store_JadwalPerNonTenderSpse/{kode_non_tender}', [JadwalPerNonTenderSpseController::class, 'index']);
 Route::get('backup/store_PpPerNonTenderSpse/{year}/{lpse}', [PpPerNonTenderSpseController::class, 'index']);
+Route::get('backup/store_EcatInstansiSatker/', [EcatInstansiSatkerController::class, 'index']);

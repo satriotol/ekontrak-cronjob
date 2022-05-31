@@ -95,9 +95,9 @@ class HomeController extends Controller
     public function store_ObjekAkunMasterRup($year)
     {
         $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/5482eb5b-2b4e-4033-81bd-9552e4cb8a28/json/736987962/ObjekAkunMasterRUP/tipe/4:12/parameter/' . $year . ':D129');
-        ObjekAkunMasterRup::truncate();
+        $records = array();
         foreach (json_decode($responses) as $response) {
-            ObjekAkunMasterRup::create([
+            $records[] = [
                 'id_program' => $response->id_program,
                 'id_kegiatan' => $response->id_kegiatan,
                 'id_table' => $response->id,
@@ -106,9 +106,12 @@ class HomeController extends Controller
                 'pagu' => $response->pagu,
                 'is_deleted' => $response->is_deleted,
                 'id_client' => $response->id_client,
-            ]);
+            ];
         }
-        return ResponseFormatter::success('', 'Sukses Menambah Data');
+        foreach ($records as $record) {
+            ObjekAkunMasterRup::updateOrCreate(['id_table' => $record['id_table']], $record);
+        }
+        return ResponseFormatter::success(ObjekAkunMasterRup::all()->count(), 'Sukses Menambah Data');
     }
     public function store_ProgramMasterRup($year)
     {
@@ -125,7 +128,7 @@ class HomeController extends Controller
                 'id_satker' => $response->id_satker,
             ]);
         }
-        return ResponseFormatter::success('', 'Sukses Menambah Data');
+        return ResponseFormatter::success(ProgramMasterRup::all()->count(), 'Sukses Menambah Data');
     }
     public function store_KegiatanMasterRup($year)
     {
