@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EcatInstansiSatkerController;
+use App\Http\Controllers\EcatKomoditasDetailController;
 use App\Http\Controllers\EcatPenyediaDetailController;
 use App\Http\Controllers\EcatPenyediaDistributorDetailController;
 use App\Http\Controllers\EcatProdukDetailController;
@@ -73,3 +74,4 @@ Route::get('backup/store_HistoryKajiUlangRupPenyedia/{rup}', [HistoryKajiUlangRu
 Route::get('backup/store_EcatProdukDetail/{kode_produk}', [EcatProdukDetailController::class, 'index']);
 Route::get('backup/store_NonTenderSelesaiDetailSpse/{year}/{lpse}', [NonTenderSelesaiDetailSpseController::class, 'index']);
 Route::get('backup/store_RinciObjekAkunMasterRup/{year}', [RinciObjekAkunMasterRupController::class, 'index']);
+Route::get('backup/store_EcatKomoditasDetail/{komoditas}', [EcatKomoditasDetailController::class, 'index']);
