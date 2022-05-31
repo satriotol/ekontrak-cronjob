@@ -11,6 +11,7 @@ use App\Http\Controllers\NonTenderEkontrakSppbJspseController;
 use App\Http\Controllers\NonTenderPengumumanDetailSpseController;
 use App\Http\Controllers\PaketSwakelolaOpt1618Controller;
 use App\Http\Controllers\PencatatanNonTenderSpseController;
+use App\Http\Controllers\PencatatanSwakelolaRealisasiSpseController;
 use App\Http\Controllers\PpPerNonTenderSpseController;
 use App\Http\Controllers\RupStrukturAnggaranKl1221Controller;
 use App\Http\Controllers\RupStrukturAnggaranPemda1221Controller;
@@ -59,3 +60,4 @@ Route::get('backup/store_PpPerNonTenderSpse/{year}/{lpse}', [PpPerNonTenderSpseC
 Route::get('backup/store_EcatInstansiSatker/', [EcatInstansiSatkerController::class, 'index']);
 Route::get('backup/store_PencatatanNonTenderSpse/{year}/{lpse}', [PencatatanNonTenderSpseController::class, 'index']);
 Route::get('backup/store_JadwalPerTenderSpse/{kode_tender}', [JadwalPerTenderSpseController::class, 'index']);
+Route::get('backup/store_PencatatanSwakelolaRealisasiSpse/{KodeSwakelolaPct}', [PencatatanSwakelolaRealisasiSpseController::class, 'index']);
