@@ -17,6 +17,7 @@ use App\Http\Controllers\PaketSwakelolaOpt1618Controller;
 use App\Http\Controllers\PencatatanNonTenderSpseController;
 use App\Http\Controllers\PencatatanSwakelolaRealisasiSpseController;
 use App\Http\Controllers\PencatatanSwakelolaSpseController;
+use App\Http\Controllers\PokjaPerNonTenderSpseController;
 use App\Http\Controllers\PokjaPerTenderSpseController;
 use App\Http\Controllers\PpPerNonTenderSpseController;
 use App\Http\Controllers\RinciObjekAkunMasterRupController;
@@ -75,3 +76,4 @@ Route::get('backup/store_EcatProdukDetail/{kode_produk}', [EcatProdukDetailContr
 Route::get('backup/store_NonTenderSelesaiDetailSpse/{year}/{lpse}', [NonTenderSelesaiDetailSpseController::class, 'index']);
 Route::get('backup/store_RinciObjekAkunMasterRup/{year}', [RinciObjekAkunMasterRupController::class, 'index']);
 Route::get('backup/store_EcatKomoditasDetail/{komoditas}', [EcatKomoditasDetailController::class, 'index']);
+Route::get('backup/store_PokjaPerNonTenderSpse/{year}/{lpse}', [PokjaPerNonTenderSpseController::class, 'index']);
