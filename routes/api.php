@@ -25,6 +25,7 @@ use App\Http\Controllers\RupStrukturAnggaranKl1221Controller;
 use App\Http\Controllers\RupStrukturAnggaranPemda1221Controller;
 use App\Http\Controllers\TenderEkontrakBapBastSpseController;
 use App\Http\Controllers\TenderEkontrakSppbJspseController;
+use App\Http\Controllers\TenderPengumumanDetailSpseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -77,3 +78,4 @@ Route::get('backup/store_NonTenderSelesaiDetailSpse/{year}/{lpse}', [NonTenderSe
 Route::get('backup/store_RinciObjekAkunMasterRup/{year}', [RinciObjekAkunMasterRupController::class, 'index']);
 Route::get('backup/store_EcatKomoditasDetail/{komoditas}', [EcatKomoditasDetailController::class, 'index']);
 Route::get('backup/store_PokjaPerNonTenderSpse/{year}/{lpse}', [PokjaPerNonTenderSpseController::class, 'index']);
+Route::get('backup/store_TenderPengumumanDetailSpse/{year}/{lpse}', [TenderPengumumanDetailSpseController::class, 'index']);
