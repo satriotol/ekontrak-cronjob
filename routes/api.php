@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JadwalPerNonTenderSpseController;
 use App\Http\Controllers\JadwalPerTenderSpseController;
 use App\Http\Controllers\MasterLpseSpseController;
+use App\Http\Controllers\NonTenderEkontrakBapBastSpseController;
 use App\Http\Controllers\NonTenderEkontrakSppbJspseController;
 use App\Http\Controllers\NonTenderPengumumanDetailSpseController;
 use App\Http\Controllers\NonTenderSelesaiDetailSpseController;
@@ -79,3 +80,4 @@ Route::get('backup/store_RinciObjekAkunMasterRup/{year}', [RinciObjekAkunMasterR
 Route::get('backup/store_EcatKomoditasDetail/{komoditas}', [EcatKomoditasDetailController::class, 'index']);
 Route::get('backup/store_PokjaPerNonTenderSpse/{year}/{lpse}', [PokjaPerNonTenderSpseController::class, 'index']);
 Route::get('backup/store_TenderPengumumanDetailSpse/{year}/{lpse}', [TenderPengumumanDetailSpseController::class, 'index']);
+Route::get('backup/store_NonTenderEkontrakBapBastSpse/{year}/{lpse}', [NonTenderEkontrakBapBastSpseController::class, 'index']);
