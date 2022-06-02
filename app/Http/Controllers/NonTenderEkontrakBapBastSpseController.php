@@ -13,9 +13,9 @@ class NonTenderEkontrakBapBastSpseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($year, $lpse)
+    public function index($year)
     {
-        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/fc68fcf5-0e8d-493e-91c8-0413fe71025a/json/736987894/NonTenderEkontrakBAPbastSPSE/tipe/4:4/parameter/' . $year . ':' . $lpse);
+        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/fc68fcf5-0e8d-493e-91c8-0413fe71025a/json/736987894/NonTenderEkontrakBAPbastSPSE/tipe/4:4/parameter/' . $year . ':108');
         $anggarans = NonTenderEkontrakBapBastSpse::where('tahun_anggaran', $year)->get();
         foreach ($anggarans as $anggaran) {
             $anggaran->delete();

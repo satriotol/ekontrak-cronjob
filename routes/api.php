@@ -62,7 +62,7 @@ Route::get('backup/store_TenderEkontrakSppbJspse/{year}/{lpse}', [TenderEkontrak
 Route::get('backup/store_RupStrukturAnggaranPemda1221/{year}', [RupStrukturAnggaranPemda1221Controller::class, 'index']);
 Route::get('backup/store_PaketSwakelolaOpt1618/{year}/{kldi}', [PaketSwakelolaOpt1618Controller::class, 'index']);
 Route::get('backup/store_RupStrukturAnggaranKl1221/{year}/{klpd}', [RupStrukturAnggaranKl1221Controller::class, 'index']);
-Route::get('backup/store_TenderEkontrakBapBastSpse/{year}/{lpse}', [TenderEkontrakBapBastSpseController::class, 'index']);
+Route::get('backup/store_TenderEkontrakBapBastSpse/{year}', [TenderEkontrakBapBastSpseController::class, 'index']);
 Route::get('backup/store_EcatPenyediaDetail/{kode_penyedia}', [EcatPenyediaDetailController::class, 'index']);
 Route::get('backup/store_EcatPenyediaDistributorDetail/{kode_penyedia}', [EcatPenyediaDistributorDetailController::class, 'index']);
 Route::get('backup/store_MasterLpseSpse', [MasterLpseSpseController::class, 'index']);
@@ -83,7 +83,7 @@ Route::get('backup/store_RinciObjekAkunMasterRup/{year}', [RinciObjekAkunMasterR
 Route::get('backup/store_EcatKomoditasDetail/{komoditas}', [EcatKomoditasDetailController::class, 'index']);
 Route::get('backup/store_PokjaPerNonTenderSpse/{year}/{lpse}', [PokjaPerNonTenderSpseController::class, 'index']);
 Route::get('backup/store_TenderPengumumanDetailSpse/{year}/{lpse}', [TenderPengumumanDetailSpseController::class, 'index']);
-Route::get('backup/store_NonTenderEkontrakBapBastSpse/{year}/{lpse}', [NonTenderEkontrakBapBastSpseController::class, 'index']);
+Route::get('backup/store_NonTenderEkontrakBapBastSpse/{year}', [NonTenderEkontrakBapBastSpseController::class, 'index']);
 Route::get('backup/store_TenderSelesaiDetailSpse/{year}/{lpse}', [TenderSelesaiDetailSpseController::class, 'index']);
 Route::get('backup/store_PaketPenyediaOpt1618/{year}/{kldi}', [PaketPenyediaOpt1618Controller::class, 'index']);
 Route::get('backup/store_PesertaPerTenderSpse/{tender}', [PesertaPerTenderSpseController::class, 'index']);
