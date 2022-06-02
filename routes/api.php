@@ -14,6 +14,7 @@ use App\Http\Controllers\NonTenderEkontrakBapBastSpseController;
 use App\Http\Controllers\NonTenderEkontrakSppbJspseController;
 use App\Http\Controllers\NonTenderPengumumanDetailSpseController;
 use App\Http\Controllers\NonTenderSelesaiDetailSpseController;
+use App\Http\Controllers\PaketPenyediaOpt1618Controller;
 use App\Http\Controllers\PaketSwakelolaOpt1618Controller;
 use App\Http\Controllers\PencatatanNonTenderSpseController;
 use App\Http\Controllers\PencatatanSwakelolaRealisasiSpseController;
@@ -83,3 +84,4 @@ Route::get('backup/store_PokjaPerNonTenderSpse/{year}/{lpse}', [PokjaPerNonTende
 Route::get('backup/store_TenderPengumumanDetailSpse/{year}/{lpse}', [TenderPengumumanDetailSpseController::class, 'index']);
 Route::get('backup/store_NonTenderEkontrakBapBastSpse/{year}/{lpse}', [NonTenderEkontrakBapBastSpseController::class, 'index']);
 Route::get('backup/store_TenderSelesaiDetailSpse/{year}/{lpse}', [TenderSelesaiDetailSpseController::class, 'index']);
+Route::get('backup/store_PaketPenyediaOpt1618/{year}/{kldi}', [PaketPenyediaOpt1618Controller::class, 'index']);
