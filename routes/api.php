@@ -49,7 +49,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('tests', [HomeController::class, 'index']);
-Route::get('backup/store_PaketAnggaranPenyedia1618/{year}', [HomeController::class, 'store_paket_anggaran_penyedia']);
+Route::get('backup/store_PaketAnggaranPenyedia1618/{year}/{kldi}', [HomeController::class, 'store_paket_anggaran_penyedia']);
 Route::get('backup/store_EcatPaketEpurchasing/{year}', [HomeController::class, 'store_paket_epurchasing']);
 Route::get('backup/store_ObjekAkunMasterRup/{year}', [HomeController::class, 'store_ObjekAkunMasterRup']);
 Route::get('backup/store_ProgramMasterRup/{year}', [HomeController::class, 'store_ProgramMasterRup']);
