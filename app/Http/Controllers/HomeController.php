@@ -144,10 +144,11 @@ class HomeController extends Controller
                 'is_deleted' => $response->is_deleted,
                 'id_client' => $response->id_client,
                 'id_satker' => $response->id_satker,
+                'tahun_anggaran' => $year,
             ];
         }
         foreach ($records as $record) {
-            KegiatanMasterRup::updateOrCreate(['id_table' => $record['id_table']], $record);
+            KegiatanMasterRup::updateOrCreate(['id_table' => $record['id_table'], 'tahun_anggaran' => $record['tahun_anggaran']], $record);
         }
         return ResponseFormatter::success(KegiatanMasterRup::all()->count(), 'Sukses Menambah Data');
     }

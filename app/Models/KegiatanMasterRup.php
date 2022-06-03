@@ -18,5 +18,6 @@ class KegiatanMasterRup extends Model
         'is_deleted',
         'id_client',
         'id_satker',
+        'tahun_anggaran'
     ];
 }
