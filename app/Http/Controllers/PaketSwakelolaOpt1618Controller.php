@@ -15,9 +15,9 @@ class PaketSwakelolaOpt1618Controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($year, $kldi)
+    public function index($year)
     {
-        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/ed83b1a5-9dde-415c-8e5f-cbb77b453a6a/json/736987909/PaketSwakelolaOpt1618/tipe/4:12/parameter/' . $year . ':' . $kldi);
+        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/ed83b1a5-9dde-415c-8e5f-cbb77b453a6a/json/736987909/PaketSwakelolaOpt1618/tipe/4:12/parameter/' . $year . ':D129');
         $anggarans = PaketSwakelolaOpt1618::where('tahunanggaran', $year)->get();
         foreach ($anggarans as $anggaran) {
             $anggaran->delete();
