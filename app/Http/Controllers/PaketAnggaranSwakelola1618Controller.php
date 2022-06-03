@@ -31,7 +31,7 @@ class PaketAnggaranSwakelola1618Controller extends Controller
             ];
         }
         foreach ($records as $record) {
-            PaketAnggaranSwakelola1618::updateOrCreate(['tahun_anggaran_dana' => $record['tahun_anggaran_dana']], $record);
+            PaketAnggaranSwakelola1618::updateOrCreate(['koderup' => $record['koderup'],'tahun_anggaran_dana' => $record['tahun_anggaran_dana']], $record);
         }
         return ResponseFormatter::success(PaketAnggaranSwakelola1618::all()->count(), 'Sukses Menambah Data');
     }
