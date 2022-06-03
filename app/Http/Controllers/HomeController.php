@@ -116,9 +116,9 @@ class HomeController extends Controller
     public function store_ProgramMasterRup($year)
     {
         $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/8058ef46-8d09-445a-be29-623e4007f164/json/736987931/ProgramMasterRUP/tipe/4:12/parameter/' . $year . ':D129');
-        ProgramMasterRup::truncate();
+        $records = array();
         foreach (json_decode($responses) as $response) {
-            ProgramMasterRup::create([
+            $records[] = [
                 'id_table' => $response->id,
                 'kode_programs' => $response->kode_programs,
                 'nama' => $response->nama,
@@ -126,7 +126,11 @@ class HomeController extends Controller
                 'is_deleted' => $response->is_deleted,
                 'id_client' => $response->id_client,
                 'id_satker' => $response->id_satker,
-            ]);
+                'tahun_anggaran' => $year
+            ];
+        }
+        foreach ($records as $record) {
+            ProgramMasterRup::updateOrCreate(['id_table' => $record['id_table'], 'tahun_anggaran' => $record['tahun_anggaran']], $record);
         }
         return ResponseFormatter::success(ProgramMasterRup::all()->count(), 'Sukses Menambah Data');
     }
