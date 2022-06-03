@@ -67,7 +67,7 @@ Route::get('backup/store_TenderEkontrakBapBastSpse/{year}', [TenderEkontrakBapBa
 Route::get('backup/store_EcatPenyediaDetail/{kode_penyedia}', [EcatPenyediaDetailController::class, 'index']);
 Route::get('backup/store_EcatPenyediaDistributorDetail/{kode_penyedia}', [EcatPenyediaDistributorDetailController::class, 'index']);
 Route::get('backup/store_MasterLpseSpse', [MasterLpseSpseController::class, 'index']);
-Route::get('backup/store_NonTenderPengumumanDetailSpse/{year}/{lpse}', [NonTenderPengumumanDetailSpseController::class, 'index']);
+Route::get('backup/store_NonTenderPengumumanDetailSpse/{year}', [NonTenderPengumumanDetailSpseController::class, 'index']);
 Route::get('backup/store_NonTenderEkontrakSppbJspse/{year}/{lpse}', [NonTenderEkontrakSppbJspseController::class, 'index']);
 Route::get('backup/store_JadwalPerNonTenderSpse/{kode_non_tender}', [JadwalPerNonTenderSpseController::class, 'index']);
 Route::get('backup/store_PpPerNonTenderSpse/{year}/{lpse}', [PpPerNonTenderSpseController::class, 'index']);
@@ -79,7 +79,7 @@ Route::get('backup/store_PokjaPerTenderSpse/{year}/{lpse}', [PokjaPerTenderSpseC
 Route::get('backup/store_PencatatanSwakelolaSpse/{year}/{lpse}', [PencatatanSwakelolaSpseController::class, 'index']);
 Route::get('backup/store_HistoryKajiUlangRupPenyedia/{rup}', [HistoryKajiUlangRupPenyediaController::class, 'index']);
 Route::get('backup/store_EcatProdukDetail/{kode_produk}', [EcatProdukDetailController::class, 'index']);
-Route::get('backup/store_NonTenderSelesaiDetailSpse/{year}/{lpse}', [NonTenderSelesaiDetailSpseController::class, 'index']);
+Route::get('backup/store_NonTenderSelesaiDetailSpse/{year}', [NonTenderSelesaiDetailSpseController::class, 'index']);
 Route::get('backup/store_RinciObjekAkunMasterRup/{year}', [RinciObjekAkunMasterRupController::class, 'index']);
 Route::get('backup/store_EcatKomoditasDetail/{komoditas}', [EcatKomoditasDetailController::class, 'index']);
 Route::get('backup/store_PokjaPerNonTenderSpse/{year}/{lpse}', [PokjaPerNonTenderSpseController::class, 'index']);

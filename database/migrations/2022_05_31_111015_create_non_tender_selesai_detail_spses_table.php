@@ -24,7 +24,7 @@ return new class extends Migration
             $table->bigInteger('kd_lpse')->nullable();
             $table->longText('nama_lpse')->nullable();
             $table->bigInteger('kd_nontender')->nullable();
-            $table->bigInteger('kd_rup_paket')->nullable();
+            $table->longText('kd_rup_paket')->nullable();
             $table->longText('nama_paket')->nullable();
             $table->bigInteger('pagu')->nullable();
             $table->bigInteger('hps')->nullable();
