@@ -23,9 +23,9 @@ class HomeController extends Controller
         $responses = Http::get('https://isb.lkpp.go.id/isb/api/1683a6a8-32b4-40f9-a9be-dd07e8942ef3/json/736987856/PaketAnggaranPenyedia1618/tipe/4:12/parameter/2022:D129');
         return $responses->json();
     }
-    public function store_paket_anggaran_penyedia($year, $kldi)
+    public function store_paket_anggaran_penyedia($year)
     {
-        $responses = Http::accept('application/json')->get('https://isb.lkpp.go.id/isb/api/1683a6a8-32b4-40f9-a9be-dd07e8942ef3/json/736987856/PaketAnggaranPenyedia1618/tipe/4:12/parameter/' . $year . ':' . $kldi);
+        $responses = Http::accept('application/json')->get('https://isb.lkpp.go.id/isb/api/1683a6a8-32b4-40f9-a9be-dd07e8942ef3/json/736987856/PaketAnggaranPenyedia1618/tipe/4:12/parameter/' . $year . ':D129');
         $anggarans = PaketAnggaranPenyedia::where('tahun_anggaran_dana', $year)->get();
         foreach ($anggarans as $anggaran) {
             $anggaran->delete();
