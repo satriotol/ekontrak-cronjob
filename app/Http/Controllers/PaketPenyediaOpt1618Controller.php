@@ -13,10 +13,10 @@ class PaketPenyediaOpt1618Controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($year, $kldi)
+    public function index($year)
     {
-        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/7bd954d3-33dc-48e6-93f6-f74058bd9544/json/736987913/PaketPenyediaOpt1618/tipe/4:12/parameter/' . $year . ':' . $kldi);
-        $anggarans = PaketPenyediaOpt1618::where('tahun_anggaran', $year)->get();
+        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/7bd954d3-33dc-48e6-93f6-f74058bd9544/json/736987913/PaketPenyediaOpt1618/tipe/4:12/parameter/' . $year . ':D129');
+        $anggarans = PaketPenyediaOpt1618::where('tahunanggaran', $year)->get();
         foreach ($anggarans as $anggaran) {
             $anggaran->delete();
         }
