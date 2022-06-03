@@ -13,9 +13,9 @@ class TenderSelesaiDetailSpseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($year, $lpse)
+    public function index($year)
     {
-        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/7815223e-cb39-421d-b799-94c6e649b74f/json/736987893/TenderSelesaiDetailSPSE/tipe/4:4/parameter/' . $year . ':' . $lpse);
+        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/7815223e-cb39-421d-b799-94c6e649b74f/json/736987893/TenderSelesaiDetailSPSE/tipe/4:4/parameter/' . $year . ':108');
         $anggarans = TenderSelesaiDetailSpse::where('tahun_anggaran', $year)->get();
         foreach ($anggarans as $anggaran) {
             $anggaran->delete();

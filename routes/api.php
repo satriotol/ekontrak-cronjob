@@ -83,9 +83,9 @@ Route::get('backup/store_NonTenderSelesaiDetailSpse/{year}', [NonTenderSelesaiDe
 Route::get('backup/store_RinciObjekAkunMasterRup/{year}', [RinciObjekAkunMasterRupController::class, 'index']);
 Route::get('backup/store_EcatKomoditasDetail/{komoditas}', [EcatKomoditasDetailController::class, 'index']);
 Route::get('backup/store_PokjaPerNonTenderSpse/{year}/{lpse}', [PokjaPerNonTenderSpseController::class, 'index']);
-Route::get('backup/store_TenderPengumumanDetailSpse/{year}/{lpse}', [TenderPengumumanDetailSpseController::class, 'index']);
+Route::get('backup/store_TenderPengumumanDetailSpse/{year}', [TenderPengumumanDetailSpseController::class, 'index']);
 Route::get('backup/store_NonTenderEkontrakBapBastSpse/{year}', [NonTenderEkontrakBapBastSpseController::class, 'index']);
-Route::get('backup/store_TenderSelesaiDetailSpse/{year}/{lpse}', [TenderSelesaiDetailSpseController::class, 'index']);
+Route::get('backup/store_TenderSelesaiDetailSpse/{year}', [TenderSelesaiDetailSpseController::class, 'index']);
 Route::get('backup/store_PaketPenyediaOpt1618/{year}', [PaketPenyediaOpt1618Controller::class, 'index']);
 Route::get('backup/store_PesertaPerTenderSpse/{tender}', [PesertaPerTenderSpseController::class, 'index']);
 Route::get('backup/store_PaketAnggaranSwakelola1618/{year}', [PaketAnggaranSwakelola1618Controller::class, 'index']);
