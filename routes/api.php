@@ -59,7 +59,7 @@ Route::get('backup/store_SuboutputMasterRup/{year}/{kldi}', [HomeController::cla
 Route::get('backup/store_KomponenMasterRup/{year}/{kldi}', [HomeController::class, 'store_KomponenMasterRup']);
 Route::get('backup/store_MasterSatkerRup/{year}', [HomeController::class, 'store_MasterSatkerRup']);
 Route::get('backup/store_SubKomponenMasterRup/{year}/{kldi}', [HomeController::class, 'store_SubKomponenMasterRup']);
-Route::get('backup/store_TenderEkontrakSppbJspse/{year}/{lpse}', [TenderEkontrakSppbJspseController::class, 'index']);
+Route::get('backup/store_TenderEkontrakSppbJspse/{year}', [TenderEkontrakSppbJspseController::class, 'index']);
 Route::get('backup/store_RupStrukturAnggaranPemda1221/{year}', [RupStrukturAnggaranPemda1221Controller::class, 'index']);
 Route::get('backup/store_PaketSwakelolaOpt1618/{year}', [PaketSwakelolaOpt1618Controller::class, 'index']);
 Route::get('backup/store_RupStrukturAnggaranKl1221/{year}/{klpd}', [RupStrukturAnggaranKl1221Controller::class, 'index']);
@@ -68,7 +68,7 @@ Route::get('backup/store_EcatPenyediaDetail/{kode_penyedia}', [EcatPenyediaDetai
 Route::get('backup/store_EcatPenyediaDistributorDetail/{kode_penyedia}', [EcatPenyediaDistributorDetailController::class, 'index']);
 Route::get('backup/store_MasterLpseSpse', [MasterLpseSpseController::class, 'index']);
 Route::get('backup/store_NonTenderPengumumanDetailSpse/{year}', [NonTenderPengumumanDetailSpseController::class, 'index']);
-Route::get('backup/store_NonTenderEkontrakSppbJspse/{year}/{lpse}', [NonTenderEkontrakSppbJspseController::class, 'index']);
+Route::get('backup/store_NonTenderEkontrakSppbJspse/{year}', [NonTenderEkontrakSppbJspseController::class, 'index']);
 Route::get('backup/store_JadwalPerNonTenderSpse/{kode_non_tender}', [JadwalPerNonTenderSpseController::class, 'index']);
 Route::get('backup/store_PpPerNonTenderSpse/{year}/{lpse}', [PpPerNonTenderSpseController::class, 'index']);
 Route::get('backup/store_EcatInstansiSatker/', [EcatInstansiSatkerController::class, 'index']);

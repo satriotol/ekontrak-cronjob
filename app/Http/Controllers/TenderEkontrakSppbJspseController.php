@@ -13,9 +13,9 @@ class TenderEkontrakSppbJspseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($year, $lpse)
+    public function index($year)
     {
-        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/fd7acb5f-8f86-45e2-a95c-e62d741fd1e3/json/736987911/TenderEkontrakSPPBJspse/tipe/4:4/parameter/' . $year . ':' . $lpse);
+        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/fd7acb5f-8f86-45e2-a95c-e62d741fd1e3/json/736987911/TenderEkontrakSPPBJspse/tipe/4:4/parameter/' . $year . ':108');
         $records = array();
         foreach (json_decode($responses) as $response) {
             $records[] = [
@@ -34,7 +34,7 @@ class TenderEkontrakSppbJspseController extends Controller
             ];
         }
         foreach ($records as $record) {
-            TenderEkontrakSppbJspse::updateOrCreate(['kd_tender' => $record['kd_tender']], $record);
+            TenderEkontrakSppbJspse::updateOrCreate(['kd_tender' => $record['kd_tender'], 'tahun_anggaran' => $record['tahun_anggaran']], $record);
         }
         return ResponseFormatter::success(TenderEkontrakSppbJspse::all()->count(), 'Sukses Menambah Data');
     }

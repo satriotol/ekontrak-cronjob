@@ -13,15 +13,12 @@ class NonTenderEkontrakSppbJspseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($year, $lpse)
+    public function index($year)
     {
-        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/1f2c0162-2316-42bb-ba06-0588f7e692c8/json/736987901/NonTenderEkontrakSPPBJspse/tipe/4:4/parameter/' . $year . ':' . $lpse);
-        $anggarans = NonTenderEkontrakSppbJspse::where('tahun_anggaran', $year)->get();
-        foreach ($anggarans as $anggaran) {
-            $anggaran->delete();
-        }
+        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/1f2c0162-2316-42bb-ba06-0588f7e692c8/json/736987901/NonTenderEkontrakSPPBJspse/tipe/4:4/parameter/' . $year . ':108');
+        $records = array();
         foreach (json_decode($responses) as $response) {
-            NonTenderEkontrakSppbJspse::create([
+            $records[] = [
                 'tahun_anggaran' => $response->tahun_anggaran,
                 'kd_lpse' => $response->kd_lpse,
                 'kd_nontender' => $response->kd_nontender,
@@ -34,7 +31,10 @@ class NonTenderEkontrakSppbJspseController extends Controller
                 'kd_penyedia' => $response->kd_penyedia,
                 'nama_penyedia' => $response->nama_penyedia,
                 'npwp_penyedia' => $response->npwp_penyedia,
-            ]);
+            ];
+        }
+        foreach ($records as $record) {
+            NonTenderEkontrakSppbJspse::updateOrCreate(['kd_nontender' => $record['kd_nontender'], 'tahun_anggaran' => $record['tahun_anggaran']], $record);
         }
         return ResponseFormatter::success(NonTenderEkontrakSppbJspse::all()->count(), 'Sukses Menambah Data');
     }
