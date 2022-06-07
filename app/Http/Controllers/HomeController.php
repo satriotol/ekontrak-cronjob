@@ -217,7 +217,8 @@ class HomeController extends Controller
                 "status_satker" => $response->status_satker,
                 "ket_satker" => $response->ket_satker,
                 "jenis_satker" => $response->jenis_satker,
-                "kd_klpd" => $response->kd_klpd
+                "kd_klpd" => $response->kd_klpd,
+                'tahun' => $year,
             ];
         }
         foreach ($records as $record) {
