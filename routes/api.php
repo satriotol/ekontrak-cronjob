@@ -72,7 +72,7 @@ Route::get('backup/store_NonTenderEkontrakSppbJspse/{year}', [NonTenderEkontrakS
 Route::get('backup/store_JadwalPerNonTenderSpse/{kode_non_tender}', [JadwalPerNonTenderSpseController::class, 'index']);
 Route::get('backup/store_PpPerNonTenderSpse/{year}/{lpse}', [PpPerNonTenderSpseController::class, 'index']);
 Route::get('backup/store_EcatInstansiSatker/', [EcatInstansiSatkerController::class, 'index']);
-Route::get('backup/store_PencatatanNonTenderSpse/{year}/{lpse}', [PencatatanNonTenderSpseController::class, 'index']);
+Route::get('backup/store_PencatatanNonTenderSpse/{year}', [PencatatanNonTenderSpseController::class, 'index']);
 Route::get('backup/store_JadwalPerTenderSpse/{kode_tender}', [JadwalPerTenderSpseController::class, 'index']);
 Route::get('backup/store_PencatatanSwakelolaRealisasiSpse/{KodeSwakelolaPct}', [PencatatanSwakelolaRealisasiSpseController::class, 'index']);
 Route::get('backup/store_PokjaPerTenderSpse/{year}/{lpse}', [PokjaPerTenderSpseController::class, 'index']);

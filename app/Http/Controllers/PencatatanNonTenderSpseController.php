@@ -13,15 +13,12 @@ class PencatatanNonTenderSpseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($year, $lpse)
+    public function index($year)
     {
-        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/c1fd44a2-18e9-4907-a53e-89e472244ed1/json/736987892/PencatatanNonTenderSPSE/tipe/4:4/parameter/' . $year . ':' . $lpse);
-        $anggarans = PencatatanNonTenderSpse::where('tahun_anggaran', $year)->get();
-        foreach ($anggarans as $anggaran) {
-            $anggaran->delete();
-        }
+        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/c1fd44a2-18e9-4907-a53e-89e472244ed1/json/736987892/PencatatanNonTenderSPSE/tipe/4:4/parameter/' . $year . ':108');
+        $records = array();
         foreach (json_decode($responses) as $response) {
-            PencatatanNonTenderSpse::create([
+            $records[] = [
                 'tahun_anggaran' => $response->tahun_anggaran,
                 'kd_klpd' => $response->kd_klpd,
                 'nama_klpd' => $response->nama_klpd,
@@ -56,7 +53,10 @@ class PencatatanNonTenderSpseController extends Controller
                 'tgl_buat_paket' => $response->tgl_buat_paket,
                 'tgl_mulai_paket' => $response->tgl_mulai_paket,
                 'tgl_selesai_paket' => $response->tgl_selesai_paket,
-            ]);
+            ];
+        }
+        foreach ($records as $record) {
+            PencatatanNonTenderSpse::updateOrCreate(['kd_nontender_pct' => $record['kd_nontender_pct'], 'tahun_anggaran' => $record['tahun_anggaran']], $record);
         }
         return ResponseFormatter::success(PencatatanNonTenderSpse::all()->count(), 'Sukses Menambah Data');
     }
