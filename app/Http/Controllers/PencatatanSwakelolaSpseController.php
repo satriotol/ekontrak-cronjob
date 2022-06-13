@@ -13,15 +13,12 @@ class PencatatanSwakelolaSpseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($year, $lpse)
+    public function index($year)
     {
-        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/ce9fca7a-7496-46fc-be85-7367c1babd9d/json/736987887/PencatatanSwakelolaSPSE/tipe/4:4/parameter/' . $year . ':' . $lpse);
-        $anggarans = PencatatanSwakelolaSpse::where('tahun_anggaran', $year)->get();
-        foreach ($anggarans as $anggaran) {
-            $anggaran->delete();
-        }
+        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/ce9fca7a-7496-46fc-be85-7367c1babd9d/json/736987887/PencatatanSwakelolaSPSE/tipe/4:4/parameter/' . $year . ':108');
+        $records = array();
         foreach (json_decode($responses) as $response) {
-            PencatatanSwakelolaSpse::create([
+            $records[] = [
                 'tahun_anggaran' => $response->tahun_anggaran,
                 'kd_klpd' => $response->kd_klpd,
                 'nama_klpd' => $response->nama_klpd,
@@ -51,7 +48,10 @@ class PencatatanSwakelolaSpseController extends Controller
                 'tgl_buat_paket' => $response->tgl_buat_paket,
                 'tgl_mulai_paket' => $response->tgl_mulai_paket,
                 'tgl_selesai_paket' => $response->tgl_selesai_paket,
-            ]);
+            ];
+        }
+        foreach ($records as $record) {
+            PencatatanSwakelolaSpse::updateOrCreate(['tahun_anggaran' => $record['tahun_anggaran'], 'kd_rup_paket' => $record['kd_rup_paket'], 'pagu' => $record['pagu']], $record);
         }
         return ResponseFormatter::success(PencatatanSwakelolaSpse::all()->count(), 'Sukses Menambah Data');
     }
