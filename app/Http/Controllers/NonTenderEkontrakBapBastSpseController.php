@@ -24,7 +24,7 @@ class NonTenderEkontrakBapBastSpseController extends Controller
             NonTenderEkontrakBapBastSpse::create([
                 'tahun_anggaran' => $response->tahun_anggaran,
                 'kd_lpse' => $response->kd_lpse,
-                'kd_tender' => $response->kd_tender,
+                'kd_tender' => $response->kd_tender ?? 0,
                 'no_kontrak' => $response->no_kontrak,
                 'tgl_kontrak' => $response->tgl_kontrak,
                 'nilai_kontrak' => $response->nilai_kontrak,
