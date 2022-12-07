@@ -77,7 +77,7 @@ Route::get('backup/store_JadwalPerTenderSpse/{kode_tender}', [JadwalPerTenderSps
 Route::get('backup/store_PencatatanSwakelolaRealisasiSpse/{KodeSwakelolaPct}', [PencatatanSwakelolaRealisasiSpseController::class, 'index']);
 Route::get('backup/store_PokjaPerTenderSpse/{year}/{lpse}', [PokjaPerTenderSpseController::class, 'index']);
 Route::get('backup/store_PencatatanSwakelolaSpse/{year}', [PencatatanSwakelolaSpseController::class, 'index']);
-Route::get('backup/store_HistoryKajiUlangRupPenyedia/{rup}', [HistoryKajiUlangRupPenyediaController::class, 'index']);
+Route::get('backup/store_HistoryKajiUlangRupPenyedia/{rup}', [HistoryKajiUlangRupPenyediaController::class, 'index']); // Data Kosong
 Route::get('backup/store_EcatProdukDetail/{kode_produk}', [EcatProdukDetailController::class, 'index']);
 Route::get('backup/store_NonTenderSelesaiDetailSpse/{year}', [NonTenderSelesaiDetailSpseController::class, 'index']);
 Route::get('backup/store_RinciObjekAkunMasterRup/{year}', [RinciObjekAkunMasterRupController::class, 'index']);

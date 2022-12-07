@@ -25,7 +25,7 @@ class EcatProdukDetailController extends Controller
                 'no_produk_penyedia' => $response->no_produk_penyedia,
                 'nama_manufaktur' => $response->nama_manufaktur,
                 'nama_produk' => $response->nama_produk,
-                'nama_kategori' => $response->nama_kategori,
+                'nama_kategori' => $response->nama_kategori ?? null,
                 'harga' => $response->harga,
                 'nama_komoditas' => $response->nama_komoditas,
                 'jumlah_stok' => $response->jumlah_stok,
