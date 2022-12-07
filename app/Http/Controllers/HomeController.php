@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\ResponseFormatter;
+use App\Jobs\SubKomponenMasterRupJob;
 use App\Models\KegiatanMasterRup;
 use App\Models\KomponenMasterRup;
 use App\Models\MasterSatkerRup;
@@ -228,26 +229,11 @@ class HomeController extends Controller
     }
     public function store_SubKomponenMasterRup($year, $kldi)
     {
-        $responses = Http::accept('application/json')->get('https://isb.lkpp.go.id/isb/api/2fe05a96-36b1-40e9-945e-310f86f58b07/json/736987915/SubKomponenMasterRUP/tipe/4:12/parameter/' . $year . ':' . $kldi);
-        $records = array();
-        foreach (json_decode($responses) as $response) {
-            $records[] = [
-                "id_program" => $response->id_program,
-                "id_kegiatan" => $response->id_kegiatan,
-                "id_output" => $response->id_output,
-                "id_suboutput" => $response->id_suboutput,
-                "id_komponen" => $response->id_komponen,
-                "id_table" => $response->id,
-                "kode_subkomponen_string" => $response->kode_subkomponen_string,
-                "nama" => $response->nama,
-                "pagu" => $response->pagu,
-                "is_deleted" => $response->is_deleted,
-                "id_client" => $response->id_client
-            ];
+        $url = 'https://isb.lkpp.go.id/isb/api/2fe05a96-36b1-40e9-945e-310f86f58b07/json/736987915/SubKomponenMasterRUP/tipe/4:12/parameter/' . $year . ':' . $kldi;
+        $responses = Http::timeout(60)->get($url);
+        foreach ($responses->json() as $response) {
+            dispatch(new SubKomponenMasterRupJob($response));
         }
-        foreach ($records as $record) {
-            SubKomponenMasterRup::updateOrCreate(['id_table' => $record['id_table']], $record);
-        }
-        return ResponseFormatter::success(SubKomponenMasterRup::all()->count(), 'Sukses Menambah Data');
+        return ResponseFormatter::success($url, 'Sukses Menambah Data');
     }
 }
