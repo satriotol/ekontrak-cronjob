@@ -20,16 +20,15 @@ class HistoryKajiUlangRupPenyediaController extends Controller
         $records = array();
         foreach (json_decode($responses) as $response) {
             $records[] = [
-                'tahun_anggaran' => $response->tahun_anggaran,
-                'kd_klpd' => $response->kd_klpd,
-                'kd_rup_lama' => $response->kd_rup_lama,
-                'kd_rup_baru' => $response->kd_rup_baru,
-                'jenis_paket' => $response->jenis_paket,
-                'jenis_revisi' => $response->jenis_revisi,
-                'alasan_kajiulang' => $response->alasan_kajiulang,
-                'tgl_kaji_ulang' => $response->tgl_kaji_ulang,
+                'tahun_anggaran' => $response->tahun_anggaran ?? null,
+                'kd_klpd' => $response->kd_klpd ?? null,
+                'kd_rup_lama' => $response->kd_rup_lama ?? null,
+                'kd_rup_baru' => $response->kd_rup_baru ?? null,
+                'jenis_paket' => $response->jenis_paket ?? null,
+                'jenis_revisi' => $response->jenis_revisi ?? null,
+                'alasan_kajiulang' => $response->alasan_kajiulang ?? null,
+                'tgl_kaji_ulang' => $response->tgl_kaji_ulang ?? null,
             ];
-            dd($records);
         }
         foreach ($records as $record) {
             HistoryKajiUlangRupPenyedia::updateOrCreate(['kd_rup_lama' => $record['kd_rup_lama'], 'jenis_revisi' => $record['jenis_revisi']], $record);
