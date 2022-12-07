@@ -15,7 +15,8 @@ class HistoryKajiUlangRupPenyediaController extends Controller
      */
     public function index($rup)
     {
-        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/378eb270-b469-48fd-8661-f4945f113b05/json/736987886/HistoryKajiUlangRUPpenyedia/tipe/4/parameter/' . $rup);
+        $url = 'https://inaproc.lkpp.go.id/isb/api/378eb270-b469-48fd-8661-f4945f113b05/json/736987886/HistoryKajiUlangRUPpenyedia/tipe/4/parameter/' . $rup;
+        $responses = Http::accept('application/json')->get($url);
         $records = array();
         foreach (json_decode($responses) as $response) {
             $records[] = [
@@ -28,6 +29,7 @@ class HistoryKajiUlangRupPenyediaController extends Controller
                 'alasan_kajiulang' => $response->alasan_kajiulang,
                 'tgl_kaji_ulang' => $response->tgl_kaji_ulang,
             ];
+            dd($records);
         }
         foreach ($records as $record) {
             HistoryKajiUlangRupPenyedia::updateOrCreate(['kd_rup_lama' => $record['kd_rup_lama'], 'jenis_revisi' => $record['jenis_revisi']], $record);
