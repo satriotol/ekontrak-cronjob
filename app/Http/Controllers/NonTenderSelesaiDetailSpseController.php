@@ -17,7 +17,7 @@ class NonTenderSelesaiDetailSpseController extends Controller
     public function index($year)
     {
         $url = 'https://inaproc.lkpp.go.id/isb/api/eadf3b47-5899-4f7a-8229-d9aae56af726/json/736987899/NonTenderSelesaiDetailSPSE/tipe/4:4/parameter/' . $year . ':108';
-        $responses = Http::get($url);
+        $responses = Http::timeout(600)->get($url);
         foreach ($responses->json() as $response) {
             dispatch(new NonTenderSelesaiDetailSpseJob($response));
         }
