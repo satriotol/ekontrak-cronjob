@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\RinciObjekAkunMasterRupJob;
 use App\Models\RinciObjekAkunMasterRup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class RinciObjekAkunMasterRupController extends Controller
@@ -15,25 +17,18 @@ class RinciObjekAkunMasterRupController extends Controller
      */
     public function index($year)
     {
-        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/33aae9ae-bcb3-4896-8507-9e78fe7a1d33/json/736987898/RinciObjekAkunMasterRUP/tipe/4:12/parameter/' . $year . ':D129');
-        $records = array();
-        foreach (json_decode($responses) as $response) {
-            $records[] = [
-                'id_program' => $response->id_program,
-                'id_kegiatan' => $response->id_kegiatan,
-                'id_table' => $response->id,
-                'kode_rinciobjekakund' => $response->kode_rinciobjekakund,
-                'uraian_rinciobjekakun' => $response->uraian_rinciobjekakun,
-                'pagu' => $response->pagu,
-                'is_deleted' => $response->is_deleted,
-                'id_client' => $response->id_client,
-                'id_objekakun' => $response->id_objekakun,
-            ];
+        $url = 'https://inaproc.lkpp.go.id/isb/api/33aae9ae-bcb3-4896-8507-9e78fe7a1d33/json/736987898/RinciObjekAkunMasterRUP/tipe/4:12/parameter/' . $year . ':D129';
+        $responses = Http::timeout(60)->get($url);
+        DB::beginTransaction();
+        try {
+            foreach ($responses->json() as $response) {
+                dispatch(new RinciObjekAkunMasterRupJob($response));
+            }
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
         }
-        foreach ($records as $record) {
-            RinciObjekAkunMasterRup::updateOrCreate(['id_table' => $record['id_table']], $record);
-        }
-        return ResponseFormatter::success(RinciObjekAkunMasterRup::all()->count(), 'Sukses Menambah Data');
+        return ResponseFormatter::success($url, 'Sukses Menambah Data');
     }
 
     /**
