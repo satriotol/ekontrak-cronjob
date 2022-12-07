@@ -28,7 +28,7 @@ class NonTenderEkontrakBapBastSpseController extends Controller
                 'no_kontrak' => $response->no_kontrak,
                 'tgl_kontrak' => $response->tgl_kontrak,
                 'nilai_kontrak' => $response->nilai_kontrak,
-                'cara_pembayaran_kontrak' => $response->cara_pembayaran_kontrak,
+                'cara_pembayaran_kontrak' => $response->cara_pembayaran_kontrak ?? 0,
                 'kontrak_tipe_penyedia' => $response->kontrak_tipe_penyedia,
                 'wakil_sah_penyedia_kontrak' => $response->wakil_sah_penyedia_kontrak,
                 'jabatan_wakil_penyedia_kontrak' => $response->jabatan_wakil_penyedia_kontrak,
