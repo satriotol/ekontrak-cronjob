@@ -18,7 +18,7 @@ class HistoryKajiUlangRupPenyediaController extends Controller
         $url = 'https://inaproc.lkpp.go.id/isb/api/378eb270-b469-48fd-8661-f4945f113b05/json/736987886/HistoryKajiUlangRUPpenyedia/tipe/4/parameter/' . $rup;
         $responses = Http::accept('application/json')->get($url);
         $records = array();
-        dd($responses);
+        return $responses;
         foreach (json_decode($responses) as $response) {
             $records[] = [
                 'tahun_anggaran' => $response->tahun_anggaran ?? null,
