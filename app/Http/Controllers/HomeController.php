@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\ResponseFormatter;
+use App\Jobs\PaketAnggaranPenyediaJob;
 use App\Jobs\SubKomponenMasterRupJob;
 use App\Models\KegiatanMasterRup;
 use App\Models\KomponenMasterRup;
@@ -14,6 +15,7 @@ use App\Models\ProgramMasterRup;
 use App\Models\SubKomponenMasterRup;
 use App\Models\SuboutputMasterRup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Throwable;
 
@@ -26,25 +28,17 @@ class HomeController extends Controller
     }
     public function store_paket_anggaran_penyedia($year)
     {
-        $responses = Http::accept('application/json')->get('https://isb.lkpp.go.id/isb/api/1683a6a8-32b4-40f9-a9be-dd07e8942ef3/json/736987856/PaketAnggaranPenyedia1618/tipe/4:12/parameter/' . $year . ':D129');
-        $anggarans = PaketAnggaranPenyedia::where('tahun_anggaran_dana', $year)->get();
-        foreach ($anggarans as $anggaran) {
-            $anggaran->delete();
+        $url = 'https://isb.lkpp.go.id/isb/api/1683a6a8-32b4-40f9-a9be-dd07e8942ef3/json/736987856/PaketAnggaranPenyedia1618/tipe/4:12/parameter/' . $year . ':D129';
+        $responses = Http::timeout(60)->get($url);
+        try {
+            foreach ($responses->json() as $response) {
+                dispatch(new PaketAnggaranPenyediaJob($response));
+            }
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
         }
-        foreach (json_decode($responses) as $response) {
-            PaketAnggaranPenyedia::create([
-                'koderup' => $response->koderup,
-                'id_rup_client' => $response->id_rup_client,
-                'kodekomponen' => $response->kodekomponen,
-                'kodekegiatan' => $response->kodekegiatan,
-                'pagu' => $response->pagu,
-                'mak' => $response->mak,
-                'sumberdana' => $response->sumberdana,
-                'kodeobjekakun' => $response->kodeobjekakun,
-                'tahun_anggaran_dana' => $response->tahun_anggaran_dana
-            ]);
-        }
-        return ResponseFormatter::success(PaketAnggaranPenyedia::all()->count(), 'Sukses Menambah Data');
+        return ResponseFormatter::success($url, 'Sukses Menambah Data');
     }
     public function store_paket_epurchasing($year)
     {
@@ -231,8 +225,14 @@ class HomeController extends Controller
     {
         $url = 'https://isb.lkpp.go.id/isb/api/2fe05a96-36b1-40e9-945e-310f86f58b07/json/736987915/SubKomponenMasterRUP/tipe/4:12/parameter/' . $year . ':' . $kldi;
         $responses = Http::timeout(60)->get($url);
-        foreach ($responses->json() as $response) {
-            dispatch(new SubKomponenMasterRupJob($response));
+        DB::beginTransaction();
+        try {
+            foreach ($responses->json() as $response) {
+                dispatch(new SubKomponenMasterRupJob($response));
+            }
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
         }
         return ResponseFormatter::success($url, 'Sukses Menambah Data');
     }

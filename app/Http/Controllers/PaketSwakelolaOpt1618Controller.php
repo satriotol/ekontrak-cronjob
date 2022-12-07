@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Jobs\PaketSwakelolaOpt1618Job;
 use App\Models\PaketSwakelolaOpt1618;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class PaketSwakelolaOpt1618Controller extends Controller
@@ -17,9 +18,15 @@ class PaketSwakelolaOpt1618Controller extends Controller
     public function index($year)
     {
         $url = 'https://inaproc.lkpp.go.id/isb/api/ed83b1a5-9dde-415c-8e5f-cbb77b453a6a/json/736987909/PaketSwakelolaOpt1618/tipe/4:12/parameter/' . $year . ':D129';
-        $responses = Http::timeout(600)->accept('application/json')->get($url);
-        foreach (json_decode($responses) as $response) {
-            dispatch(new PaketSwakelolaOpt1618Job($response));
+        $responses = Http::timeout(60)->accept('application/json')->get($url);
+        DB::beginTransaction();
+        try {
+            foreach (json_decode($responses) as $response) {
+                dispatch(new PaketSwakelolaOpt1618Job($response));
+            }
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
         }
         return ResponseFormatter::success($url, 'Sukses Menambah Data');
     }
