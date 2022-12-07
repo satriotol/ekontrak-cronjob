@@ -18,10 +18,10 @@ class PaketSwakelolaOpt1618Controller extends Controller
     public function index($year)
     {
         $url = 'https://inaproc.lkpp.go.id/isb/api/ed83b1a5-9dde-415c-8e5f-cbb77b453a6a/json/736987909/PaketSwakelolaOpt1618/tipe/4:12/parameter/' . $year . ':D129';
-        $responses = Http::timeout(60)->accept('application/json')->get($url);
+        $responses = Http::timeout(60)->get($url);
         DB::beginTransaction();
         try {
-            foreach (json_decode($responses) as $response) {
+            foreach ($responses->json() as $response) {
                 dispatch(new PaketSwakelolaOpt1618Job($response));
             }
             DB::commit();
