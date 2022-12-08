@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $job = DB::table('jobs')->count();
-    return $job;
+    return ['Jumlah Job Terecord' => $job];
     // echo 'sukses gan';
 });
 Route::get('/test', [HomeController::class, 'index']);
