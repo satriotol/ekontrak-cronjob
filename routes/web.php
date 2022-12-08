@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // return view('welcome');
-    echo 'sukses gan';
+    $job = DB::table('jobs')->count();
+    return $job;
+    // echo 'sukses gan';
 });
 Route::get('/test', [HomeController::class, 'index']);
 

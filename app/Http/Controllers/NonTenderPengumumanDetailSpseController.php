@@ -15,7 +15,7 @@ class NonTenderPengumumanDetailSpseController extends Controller
      */
     public function index($year)
     {
-        $responses = Http::accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/7e26803e-7ba8-4751-be96-f48217bb54b6/json/736987902/NonTenderPengumumanDetailSPSE/tipe/4:4/parameter/' . $year . ':108');
+        $responses = Http::timeout60()->accept('application/json')->get('https://inaproc.lkpp.go.id/isb/api/7e26803e-7ba8-4751-be96-f48217bb54b6/json/736987902/NonTenderPengumumanDetailSPSE/tipe/4:4/parameter/' . $year . ':108');
         $anggarans = NonTenderPengumumanDetailSpse::where('tahun_anggaran', $year)->get();
         foreach ($anggarans as $anggaran) {
             $anggaran->delete();
