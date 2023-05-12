@@ -21,7 +21,7 @@ class EcatPenyediaDetailController extends Controller
             $records[] = [
                 'kd_penyedia' => $response->kd_penyedia,
                 'nama_penyedia' => $response->nama_penyedia,
-                'penyedia_ukm' => $response->penyedia_ukm,
+                'penyedia_ukm' => $response->penyedia_umkm,
                 'alamat_penyedia' => $response->alamat_penyedia,
                 'email_penyedia' => $response->email_penyedia,
                 'no_telp_penyedia' => $response->no_telp_penyedia,
